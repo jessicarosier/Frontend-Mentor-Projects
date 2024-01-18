@@ -1,7 +1,33 @@
+:root {
+    --purple: hsl(259, 100%, 65%);
+    --light-red: hsl(0, 100%, 67%);
+
+    --offWhite: hsl(0, 0%, 100%) Off;
+    --white: hsl(0, 0%, 94%) Light;
+    --smokeyGrey: hsl(0, 0%, 86%) Smokey;
+    --grey: hsl(0, 1%, 44%) Off;
+    --black: hsl(0, 0%, 8%);
+
+    --inputFontSize: 32px;
+
+    --primary-font: Poppins, sans-serif;
+
+}
+
+body {
+    font-family: var(--primary-font);
+    background-color: var(--smokeyGrey);
+}
+
+
 .page-wrapper {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+}
+
+.row {
+    color: var(--white);
 }
 
 .attribution {
@@ -11,4 +37,16 @@
 
 .attribution a {
     color: hsl(228, 45%, 44%);
+}
+
+label {
+ text-transform: uppercase;
+}
+
+input {
+    font-size: var(--inputFontSize);
+}
+
+.age-display span {
+    color: var(--purple);
 }
