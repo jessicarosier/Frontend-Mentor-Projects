@@ -14,9 +14,13 @@
 
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--primary-font);
-    background-color: var(--smokeyGrey);
+    background-color: var(--grey);
 }
 
 
@@ -24,10 +28,13 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    justify-content: center;
 }
 
 .row {
     color: var(--white);
+    border-radius: 20px 20px 200px 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .attribution {
@@ -40,13 +47,28 @@ body {
 }
 
 label {
- text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 input {
     font-size: var(--inputFontSize);
 }
 
-.age-display span {
-    color: var(--purple);
+.circle {
+    background-color: var(--purple);
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.age-display {
+
+    font-size: 100px;
+    font-weight: bolder;
+    font-style: italic;
+
+    span {
+        color: var(--purple);
+    }
+
 }
