@@ -75,7 +75,7 @@ input {
     font-weight: bolder;
     padding: 10px;
     border-radius: 10px;
-    border: 3px solid var(--grey);
+    border: 1px solid rgba(0, 0, 0, 0.37);
 
     @media (max-width: 768px) {
         font-size: calc(var(--inputFontSize) * 0.8);

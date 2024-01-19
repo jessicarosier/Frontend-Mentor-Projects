@@ -4,7 +4,11 @@ let year = document.querySelector("#year-input");
 let form = document.querySelector("form");
 let dayError = document.querySelector("#day-error");
 
+let dateString;
+
 let circleArrow = document.querySelector(".circle");
+
+
 
 function calculateAge() {
     let date = new Date();
@@ -26,27 +30,26 @@ function calculateAge() {
     let months = document.querySelector("#months");
     let days = document.querySelector("#days");
 
+
     years.innerText = ageYears;
     months.innerText = ageMonths;
     days.innerText = ageDays;
 }
 
-function isDateValid(dateStr) {
-    return !isNaN(new Date(dateStr));
+function isValidDate() {
+    // yyyy-mm-dd
+    let validDate = new Date(`${year.value}-${month.value}-${day.value}`);
+    console.log(validDate);
 
 }
+
+isValidDate();
 
 
 form.addEventListener("input", function (e) {
     e.preventDefault();
 
-    if (day.length > 2) {
-        day.classList.add("invalid");
-        dayError.innerText = "Must be a valid date";
-    } else {
-        day.classList.remove("invalid");
-        dayError.innerText = "";
-    }
+   isValidDate()
 
 });
 
