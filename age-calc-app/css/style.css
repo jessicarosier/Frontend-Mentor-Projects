@@ -67,10 +67,19 @@ body {
 
 label {
     text-transform: uppercase;
-    max-width: 75%;
+    max-width: 200px;
+
+    @media (max-width: 768px) {
+        max-width: 150px;
+    }
+
+    @media (max-width: 480px) {
+        max-width: 100px;
+    }
 }
 
 input {
+    max-width: 200px;
     font-size: var(--inputFontSize);
     font-weight: bolder;
     padding: 10px;
@@ -79,10 +88,12 @@ input {
 
     @media (max-width: 768px) {
         font-size: calc(var(--inputFontSize) * 0.8);
+        max-width: 150px;
     }
 
     @media (max-width: 480px) {
         font-size: calc(var(--inputFontSize) * 0.6);
+        max-width: 100px;
     }
 
     &:focus {
