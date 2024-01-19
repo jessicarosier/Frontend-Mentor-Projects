@@ -14,23 +14,23 @@
 </head>
 <body>
 <div class="page-wrapper">
-  <main class="container">
-    <div class="row justify-content-center align-items-center bg-white gap-5 p-5">
+  <main class="container d-flex justify-content-center">
+    <div class="row justify-content-center align-items-center bg-white app-wrapper">
       <div id="input-wrapper" class="d-flex flex-row flex-lg-column justify-content-center align-items-center">
         <div class="d-flex">
-          <form class="d-flex gap-5">
+          <form class="d-flex gap-3 justify-content-start align-items-start">
             <label class="d-flex flex-column">Day
-              <input class="w-100" placeholder="day" id="day-input">
+              <input class="w-75" placeholder="day" id="day-input">
               <p id="day-error" class="error"></p>
             </label>
 
             <label class="d-flex flex-column">Month
-              <input class="w-100" placeholder="month" id="month-input">
+              <input class="w-75" placeholder="month" id="month-input">
               <p class="error"></p>
             </label>
 
             <label class="d-flex flex-column">Year
-              <input class="w-100" placeholder="year" id="year-input">
+              <input class="w-75" placeholder="year" id="year-input">
               <p class="error"></p>
             </label>
           </form>
@@ -45,9 +45,9 @@
 
       <div id="age-display" class="d-flex justify-content-start align-items-start">
         <div class="d-flex flex-column justify-content-start align-items-start">
-          <p class="age-display"><span id="years">--</span> years</p>
-          <p class="age-display"><span id="months">--</span> months</p>
-          <p class="age-display"><span id="days">--</span> days</p>
+          <p class="age-display"><span id="years">- -</span> years</p>
+          <p class="age-display"><span id="months">- -</span> months</p>
+          <p class="age-display"><span id="days">- -</span> days</p>
         </div>
       </div>
 

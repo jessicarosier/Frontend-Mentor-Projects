@@ -18,6 +18,11 @@
     box-sizing: border-box;
 }
 
+p {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: var(--primary-font);
     background-color: var(--grey);
@@ -31,10 +36,24 @@ body {
     justify-content: center;
 }
 
-.row {
+.app-wrapper {
     color: var(--white);
     border-radius: 20px 20px 200px 20px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    max-width: 60vw;
+    max-height: 80vh;
+    padding: 60px 40px;
+
+    @media (max-width: 768px) {
+        padding: 40px 20px;
+        border-radius: 20px 20px 150px 20px;
+        max-width: 90vw;
+    }
+
+    @media (max-width: 480px) {
+        border-radius: 20px 20px 100px 20px;
+        padding: 20px 10px;
+    }
 }
 
 .attribution {
@@ -48,6 +67,7 @@ body {
 
 label {
     text-transform: uppercase;
+    max-width: 75%;
 }
 
 input {
@@ -56,6 +76,14 @@ input {
     padding: 10px;
     border-radius: 10px;
     border: 3px solid var(--grey);
+
+    @media (max-width: 768px) {
+        font-size: calc(var(--inputFontSize) * 0.8);
+    }
+
+    @media (max-width: 480px) {
+        font-size: calc(var(--inputFontSize) * 0.6);
+    }
 
     &:focus {
         outline: none;
@@ -72,6 +100,16 @@ input {
     height: 100px;
     border-radius: 50%;
 
+    @media (max-width: 768px) {
+        width: 80px;
+        height: 80px;
+    }
+
+    @media (max-width: 480px) {
+        width: 60px;
+        height: 60px;
+    }
+
     &:hover {
         background-color: var(--black);
         cursor: pointer;
@@ -79,11 +117,19 @@ input {
 }
 
 .age-display {
-
-    font-size: 150px;
+    margin-bottom: 20px;
+    font-size: 100px;
     font-weight: 800;
     font-style: italic;
     transition: all 0.5s ease-in-out;
+
+    @media (max-width: 768px) {
+        font-size: 80px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 40px;
+    }
 
     span {
         color: var(--purple);
