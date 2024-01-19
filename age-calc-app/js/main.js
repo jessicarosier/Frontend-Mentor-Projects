@@ -1,23 +1,27 @@
 let day = document.querySelector("#day-input");
 let month = document.querySelector("#month-input");
 let year = document.querySelector("#year-input");
-let currentYear;
-let errorMessage = "";
-
-
+let dayValid = false;
+let monthValid = false;
+let yearValid = false;
+let allInputsValid = false;
+let error;
 let circleArrow = document.querySelector(".circle");
 
 
+let date = new Date();
+let currentYear = date.getFullYear();
+let currentMonth = date.getMonth() + 1;
+let currentDay = date.getDate();
+
+
 function calculateAge() {
-    let date = new Date();
-    currentYear = date.getFullYear();
-    let currentMonth = date.getMonth() + 1;
-    let currentDay = date.getDate();
+
     let ageYears = currentYear - year.value;
     let ageMonths = currentMonth - month.value;
     let ageDays = currentDay - day.value;
 
-    if (ageMonths < 0 || (ageMonths == 0 && ageDays < 0)) {
+    if (ageMonths < 0 || (ageMonths === 0 && ageDays < 0)) {
         ageYears--;
         ageMonths += 12;
     }
@@ -34,27 +38,34 @@ function calculateAge() {
     days.innerText = ageDays;
 }
 
-let error;
+
 function generateErrorMessage(element, message) {
+
+    error = document.createElement("p");
+    error.innerText = message;
+    error.classList.add("error");
+    error.classList.add("error-message");
+    element.classList.add("invalid");
+    element.parentElement.classList.add("error");
+    element.parentElement.appendChild(error);
+}
+
+function removeErrorMessage(element) {
     if (element.parentElement.querySelector(".error")) {
         element.parentElement.querySelector(".error").remove();
+    }
+    if (element.parentElement.classList.contains("error")) {
+        element.parentElement.classList.remove("error");
     }
 
     if (element.classList.contains("invalid")) {
         element.classList.remove("invalid");
+
     }
-    error = document.createElement("p");
-    error.innerText = message;
-    error.classList.add("error");
-    element.parentElement.appendChild(error);
+
 }
 
-function validateInput() {
-    let dayValid = false;
-    let monthValid = false;
-    let yearValid = false;
-    let allInputsValid = false;
-
+function validateDay() {
     if (parseInt(day.value) > 31 || parseInt(day.value) < 1) {
         dayValid = false;
         generateErrorMessage(day, "Must be a valid day");
@@ -63,9 +74,13 @@ function validateInput() {
         generateErrorMessage(day, "This field is required");
     } else {
         dayValid = true;
-        error.remove();
+        removeErrorMessage(day);
+        dayValid = true;
     }
 
+}
+
+function validateMonth() {
     if (parseInt(month.value) > 12 || parseInt(month.value) < 1) {
         monthValid = false;
         generateErrorMessage(month, "Must be a valid month");
@@ -74,8 +89,12 @@ function validateInput() {
         generateErrorMessage(month, "This field is required");
     } else {
         monthValid = true;
-        error.remove();
+        removeErrorMessage(month);
     }
+
+}
+
+function validateYear() {
     if (parseInt(year.value) > currentYear || parseInt(year.value) < 1) {
         yearValid = false;
         generateErrorMessage(year, "Must be in the past");
@@ -84,40 +103,32 @@ function validateInput() {
         generateErrorMessage(year, "This field is required");
     } else {
         yearValid = true;
-        error.remove();
+        removeErrorMessage(year);
     }
 
-    if (!dayValid) {
-        day.classList.add("invalid")
-    } else {
-        day.classList.remove("invalid")
-    }
-
-    if (!monthValid) {
-        month.classList.add("invalid")
-    } else {
-        month.classList.remove("invalid")
-    }
-
-    if (!yearValid) {
-        year.classList.add("invalid")
-    } else {
-        year.classList.remove("invalid")
-    }
-
-    if (dayValid && monthValid && yearValid) {
-        allInputsValid = true;
-    }
-
-    if (allInputsValid) {
-
-        calculateAge();
-    }
 }
 
+function validateInput() {
+
+    day.addEventListener("input", validateDay);
+    month.addEventListener("change", validateMonth);
+    year.addEventListener("change", validateYear);
+
+    if (dayValid && monthValid && yearValid) {
+        circleArrow.classList.remove("disabled");
+    } else {
+        circleArrow.classList.add("disabled");
+    }
+
+
+
+
+}
+
+window.addEventListener("change", validateInput);
 
 circleArrow.addEventListener("click", function (e) {
     e.preventDefault();
-    validateInput();
+    calculateAge();
 
 });

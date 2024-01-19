@@ -121,7 +121,10 @@ input {
     font-size: 100px;
     font-weight: 800;
     font-style: italic;
-    transition: all 0.5s ease-in-out;
+
+    & span {
+        transition: all 0.3s ease-in-out;
+    }
 
     @media (max-width: 768px) {
         font-size: 80px;
@@ -138,15 +141,28 @@ input {
 }
 
 .invalid {
-    border: 3px solid var(--light-red);
+    border: 1px solid var(--light-red);
 }
 
 .error {
     color: var(--light-red);
-    text-transform: initial;
     font-size: 20px;
     font-weight: 400;
+}
+
+.error-message {
+    text-transform: initial;
     font-style: italic;
-    text-align: center;
-    margin: 20px 0;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.active {
+    opacity: 1;
+    pointer-events: all;
 }
