@@ -10,7 +10,7 @@
 
     --inputFontSize: 32px;
 
-    --primary-font: Poppins, sans-serif;
+    --primary-font: 'Poppins', sans-serif;
 
 }
 
@@ -52,23 +52,55 @@ label {
 
 input {
     font-size: var(--inputFontSize);
+    font-weight: bolder;
+    padding: 10px;
+    border-radius: 10px;
+    border: 3px solid var(--grey);
+
+    &:focus {
+        outline: none;
+        border: 3px solid var(--purple);
+    }
 }
 
 .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--purple);
     width: 100px;
     height: 100px;
     border-radius: 50%;
+
+    &:hover {
+        background-color: var(--black);
+        cursor: pointer;
+    }
 }
 
 .age-display {
 
-    font-size: 100px;
-    font-weight: bolder;
+    font-size: 150px;
+    font-weight: 800;
     font-style: italic;
+    transition: all 0.5s ease-in-out;
 
     span {
         color: var(--purple);
     }
 
+}
+
+.invalid {
+    border: 3px solid var(--light-red);
+}
+
+.error {
+    color: var(--light-red);
+    text-transform: initial;
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    text-align: center;
+    margin: 20px 0;
 }

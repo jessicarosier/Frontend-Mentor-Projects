@@ -1,7 +1,10 @@
-let day = document.querySelector('#day-input');
-let month = document.querySelector('#month-input');
-let year = document.querySelector('#year-input');
-let form = document.querySelector('form');
+let day = document.querySelector("#day-input");
+let month = document.querySelector("#month-input");
+let year = document.querySelector("#year-input");
+let form = document.querySelector("form");
+let dayError = document.querySelector("#day-error");
+
+let circleArrow = document.querySelector(".circle");
 
 function calculateAge() {
     let date = new Date();
@@ -19,17 +22,36 @@ function calculateAge() {
     if (ageDays < 0) {
         ageDays += 30;
     }
-    let years = document.querySelector('#years');
-    let months = document.querySelector('#months');
-    let days = document.querySelector('#days');
+    let years = document.querySelector("#years");
+    let months = document.querySelector("#months");
+    let days = document.querySelector("#days");
 
     years.innerText = ageYears;
     months.innerText = ageMonths;
     days.innerText = ageDays;
+}
+
+function isDateValid(dateStr) {
+    return !isNaN(new Date(dateStr));
 
 }
 
-form.addEventListener('change', function (e) {
+
+form.addEventListener("input", function (e) {
     e.preventDefault();
+
+    if (day.length > 2) {
+        day.classList.add("invalid");
+        dayError.innerText = "Must be a valid date";
+    } else {
+        day.classList.remove("invalid");
+        dayError.innerText = "";
+    }
+
+});
+
+
+circleArrow.addEventListener("click", function (e) {
+
     calculateAge();
 });
