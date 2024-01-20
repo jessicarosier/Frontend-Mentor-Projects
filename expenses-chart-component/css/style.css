@@ -1,0 +1,140 @@
+:root {
+    --soft-red: hsl(10, 79%, 65%);
+    --cyan: hsl(186, 34%, 60%);
+    --dark-brown: hsl(25, 47%, 15%);
+    --medium-brown: hsl(28, 10%, 53%);
+    --cream: hsl(27, 66%, 92%);
+    --very-pale-orange: hsl(33, 100%, 98%);
+    --body-font-size: 18px;
+    --primary-font: 'DM Sans', sans-serif;
+    /*Font Weights: 400, 700*/
+}
+
+body {
+    font-family: var(--primary-font);
+    background-color: var(--cream);
+    font-size: var(--body-font-size);
+}
+
+p {
+    margin: 0;
+}
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+}
+
+.app-wrapper {
+    width: 500px;
+;
+}
+
+hr {
+    width: 100%;
+    color: var(--medium-brown);
+}
+
+section:has(img) {
+    background-color: var(--soft-red);
+    color: white;
+    border-radius: 15px;
+    padding: 1rem;
+    width: 100%;
+
+
+
+    & div:nth-child(2) {
+        font-weight: 700;
+        color: red;
+    }
+}
+
+section:has(#chart) {
+    background-color: var(--very-pale-orange);
+    border-radius: 15px;
+    padding: 1rem;
+    width: 100%;
+
+    & #chart {
+        display: flex;
+
+        & .bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            min-height: 225px;
+            min-width: 60px;
+
+
+            & #amount {
+                display: flex;
+                flex-direction: column;
+                border-radius: 5px;
+                width: 40px;
+
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.5;
+                }
+
+            }
+        }
+    }
+}
+
+#amount-number {
+    color:white;
+    background-color: var(--dark-brown);
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+
+
+#this-month, #from-last-month, #day {
+    color: var(--medium-brown);
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    opacity: 0.8;
+
+}
+
+#this-month-amt, #last-7-days, #balance, #increase-percent {
+    font-weight: 700;
+    color: var(--dark-brown);
+    margin: 0;
+    padding: 0;
+}
+
+#this-month-amt {
+    font-size: 3rem;
+}
+
+#last-7-days {
+    padding: 10px 0 0 15px;
+    align-self: start;
+    font-size: 2.1rem;
+}
+
+.bottom-wrapper {
+    gap: 10rem;
+}
