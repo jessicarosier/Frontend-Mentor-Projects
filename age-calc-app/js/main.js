@@ -41,19 +41,30 @@ function calculateAge() {
 
 function generateErrorMessage(element, message) {
 
-    error = document.createElement("p");
+    if ( element === day) {
+        error = document.querySelector("#day-error");
+    } else if (element === month) {
+        error = document.querySelector("#month-error");
+    } else if (element === year) {
+        error = document.querySelector("#year-error");
+    }
+
     error.innerText = message;
-    error.classList.add("error");
-    error.classList.add("error-message");
     element.classList.add("invalid");
     element.parentElement.classList.add("error");
-    element.parentElement.appendChild(error);
 }
 
 function removeErrorMessage(element) {
-    if (element.parentElement.querySelector(".error")) {
-        element.parentElement.querySelector(".error").remove();
+    if ( element === day) {
+        error = document.querySelector("#day-error");
+    } else if (element === month) {
+        error = document.querySelector("#month-error");
+    } else if (element === year) {
+        error = document.querySelector("#year-error");
     }
+
+    error.innerText = "";
+
     if (element.parentElement.classList.contains("error")) {
         element.parentElement.classList.remove("error");
     }
@@ -108,27 +119,22 @@ function validateYear() {
 
 }
 
-function validateInput() {
-
-    day.addEventListener("input", validateDay);
-    month.addEventListener("change", validateMonth);
-    year.addEventListener("change", validateYear);
-
-    if (dayValid && monthValid && yearValid) {
-        circleArrow.classList.remove("disabled");
-    } else {
-        circleArrow.classList.add("disabled");
-    }
-
-
-
-
-}
-
-window.addEventListener("change", validateInput);
-
 circleArrow.addEventListener("click", function (e) {
     e.preventDefault();
-    calculateAge();
+
+
+    validateDay();
+    validateMonth();
+    validateYear();
+
+    if (dayValid && monthValid && yearValid) {
+        allInputsValid = true;
+    } else {
+        allInputsValid = false;
+    }
+
+    if (allInputsValid) {
+        calculateAge();
+    }
 
 });
