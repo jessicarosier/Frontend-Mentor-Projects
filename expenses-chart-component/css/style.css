@@ -50,7 +50,7 @@ section:has(img) {
     background-color: var(--soft-red);
     color: white;
     border-radius: 15px;
-    padding: 1rem;
+    padding: 1.5rem;
     width: 100%;
 
 
@@ -129,6 +129,10 @@ section:has(#chart) {
     font-size: 3rem;
 }
 
+#balance {
+    color: white;
+    font-size: 1.8rem;
+}
 #last-7-days {
     padding: 10px 0 0 15px;
     align-self: start;
