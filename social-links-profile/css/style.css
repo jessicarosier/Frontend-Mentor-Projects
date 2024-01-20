@@ -88,8 +88,10 @@ margin-top: 20px;
     border: none;
     border-radius: 10px;
     width: 100%;
-    padding: 15px;
+    padding: 12px;
     text-align: center;
+    font-weight: 600;
+    font-size: 16px;
 
     &:hover {
         background-color: var(--green);
