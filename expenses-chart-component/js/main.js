@@ -19,22 +19,22 @@ function renderBarChart() {
             let bar = document.createElement("div");
             bar.className = "bar";
             bar.innerHTML = `
-          <span id="amount-number" class="d-none" style="width: 60px">$${item.amount}</span>
-          <div id="amount"></div>
-          <span id="day">${item.day}</span>
+          <span class="amount-number d-none" style="width: 60px">$${item.amount}</span>
+          <div class="amount"></div>
+          <span class="day">${item.day}</span>
         `;
-            let barAmount = bar.querySelector("#amount");
+            let barAmount = bar.querySelector(".amount");
             barAmount.style.height = `${item.amount * 2.5}px`;
             barAmount.style.backgroundColor = `${color}`;
 
             barAmount.addEventListener("mouseover", () => {
-                let amountNumber = bar.querySelector("#amount-number");
+                let amountNumber = bar.querySelector(".amount-number");
                 amountNumber.classList.remove("d-none");
                 amountNumber.classList.add("d-block");
             });
 
             barAmount.addEventListener("mouseout", () => {
-                let amountNumber = bar.querySelector("#amount-number");
+                let amountNumber = bar.querySelector(".amount-number");
                 amountNumber.classList.remove("d-block");
                 amountNumber.classList.add("d-none");
             });

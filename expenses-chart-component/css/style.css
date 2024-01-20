@@ -79,7 +79,7 @@ section:has(#chart) {
             min-width: 60px;
 
 
-            & #amount {
+            & .amount {
                 display: flex;
                 flex-direction: column;
                 border-radius: 5px;
@@ -96,7 +96,7 @@ section:has(#chart) {
     }
 }
 
-#amount-number {
+.amount-number {
     color:white;
     background-color: var(--dark-brown);
     border-radius: 5px;
@@ -108,7 +108,7 @@ section:has(#chart) {
 
 
 
-#this-month, #from-last-month, #day {
+#this-month, #from-last-month, .day {
     color: var(--medium-brown);
     font-weight: 400;
     margin: 0;
