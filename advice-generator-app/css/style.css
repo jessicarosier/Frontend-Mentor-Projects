@@ -11,6 +11,14 @@
     --font-weight: 800;
 }
 
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
 .attribution {
     font-size: 11px;
     text-align: center;
@@ -18,4 +26,53 @@
 
 .attribution a {
     color: hsl(228, 45%, 44%);
+    font-family: var(--primary-font);
+}
+
+body {
+    background-color: var(--dark-blue);
+}
+
+.advice-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-grayish-blue);
+    border-radius: 15px;
+    width: 500px;
+    padding: 20px;
+
+    & div {
+
+
+        & .advice-id {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            color: var(--neon-green);
+        }
+
+        & .advice-text {
+            color: var(--light-cyan);
+            font-weight: 800;
+            font-size: var(--quote-font-size);
+        }
+    }
+}
+
+.dice-button {
+    position: relative;
+    top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+    background-color: var(--neon-green);
+
+    &:hover {
+        cursor: pointer;
+        box-shadow: 0 0 10px var(--neon-green);
+    }
 }
