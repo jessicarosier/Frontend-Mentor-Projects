@@ -24,7 +24,7 @@ async function renderAdviceCard() {
       <p class="advice-text text-center p-3">"${advice.slip.advice}"</p>
       <img src="./images/pattern-divider-desktop.svg" alt="divider">
       <div class="dice-button">
-      <img src="./images/icon-dice.svg" alt="dice">
+      <img src="./images/icon-dice.svg" class="mb-0" alt="dice">
       </div>
     </div>
     `
