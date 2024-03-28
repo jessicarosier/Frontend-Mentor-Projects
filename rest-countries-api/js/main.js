@@ -1,5 +1,6 @@
 const API_ENDPOINT = "https://restcountries.com/v3.1/all";
 
+
 const getCountries = async () => {
     const response = await fetch(API_ENDPOINT);
     const data = await response.json();
@@ -8,7 +9,7 @@ const getCountries = async () => {
 
 
 const renderCountries = async () => {
-    const countryContainer = document.getElementById("card-container");
+    const countryContainer = document.getElementById("countries-container");
     try {
         const countries = await getCountries();
         countries.forEach((country) => {
@@ -19,9 +20,6 @@ const renderCountries = async () => {
     }
 };
 
-(async () => {
-    await renderCountries();
-})();
 
 const buildCountryCard = (country) => {
     const countryCard = document.createElement("div");
@@ -41,5 +39,18 @@ const buildCountryCard = (country) => {
     `;
     countryCard.innerHTML = countryCardHTML;
     return countryCard;
+};
+
+(async () => {
+    await renderCountries();
+    toggleTheme();
+})();
+
+const toggleTheme = () => {
+    const darkModeButton = document.getElementById("theme-switcher");
+    const html = document.documentElement;
+    darkModeButton.addEventListener("click", () => {
+        html.setAttribute("data-bs-theme", html.getAttribute("data-bs-theme") === "dark" ? "light" : "dark");
+    });
 };
 
