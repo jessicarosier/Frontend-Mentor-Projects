@@ -115,14 +115,34 @@ const filterByElement = async (language) => {
         let filterRemove = filterEl.querySelector(".filter-remove");
         filterRemove.addEventListener("click", () => {
             filterEl.remove();
+            listenForClearAll();
             updateJobListings();
         });
 
-        filterWrapper.append(filterEl);
+        filterWrapper.prepend(filterEl);
+        listenForClearAll();
         await updateJobListings();
     });
 };
 
+const listenForClearAll = () => {
+    const filterWrapper = document.getElementById("filter-wrapper");
+    const clearAll = document.getElementById("clear-btn");
+    if (filterWrapper.children.length > 0) {
+    clearAll.classList.toggle("d-none", false)
+    }
+}
+
+const clearAllFilters = async () => {
+    const clearAll = document.getElementById("clear-btn");
+    clearAll.addEventListener("click", () => {
+        const filterWrapper = document.getElementById("filter-wrapper");
+        filterWrapper.innerHTML = "";
+        updateJobListings();
+        listenForClearAll();
+        clearAll.classList.toggle("d-none", true);
+    });
+}
 
 const updateJobListings = async () => {
     let matchingJobs = [];
@@ -132,12 +152,19 @@ const updateJobListings = async () => {
     let filters = [];
     filterElements.forEach((filter) => filters.push(filter.getAttribute("data-filter")));
     for (let i = 0; i < jobListings.length; i++) {
-        if (filters.includes(jobListings[i].role) || filters.includes(jobListings[i].level) || filters.includes(jobListings[i].languages)) {
-            console.log(jobListings[i]);
+        for (let j = 0; j < filters.length; j++) {
+            if (jobListings[i].languages.includes(filters[j])) {
+                matchingJobs.push(jobListings[i]);
+            }
+        }
+        if (filters.includes(jobListings[i].role) || filters.includes(jobListings[i].level)) {
             matchingJobs.push(jobListings[i]);
         }
     }
 
+    if (matchingJobs.length === 0) {
+        matchingJobs = jobListings;
+    }
     await populateJobListings(matchingJobs);
 };
 
@@ -146,5 +173,6 @@ const updateJobListings = async () => {
     const jobListings = await getJobListings();
     console.log(jobListings);
     await populateJobListings(jobListings);
+    await clearAllFilters();
 
 })();
