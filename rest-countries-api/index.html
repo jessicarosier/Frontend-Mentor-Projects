@@ -9,11 +9,34 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="../bootstrap-5.3.3/css/bootstrap.min.css">
   <!--  Google Fonts  -->
+  <script src="https://kit.fontawesome.com/86f328873b.js" crossorigin="anonymous"></script>
 
   <style>
       .card-img-top {
           width: 100%;
           aspect-ratio: 16/9;
+      }
+
+      .single-card-img {
+          width: 400px;
+          height: 300px;
+      }
+
+      .input-container {
+          position: relative;
+      }
+      .input-container input {
+          padding-left: 30px; /* Adjust based on the size of your icon */
+      }
+      .input-container i {
+          position: absolute;
+          left: 10px; /* Adjust based on the desired icon position */
+          top: 50%;
+          transform: translateY(-50%);
+      }
+
+      .btn-back {
+          border: 1px solid white;
       }
   </style>
 
@@ -21,7 +44,7 @@
 <body>
 <main class="page-wrapper">
   <nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
+    <div class="container">
       <span class="navbar-brand mb-0 h1">Where in the world?</span>
       <button class="btn" id="theme-switcher">
         <i class="fas fa-moon"></i>
@@ -32,25 +55,27 @@
   <div class="container">
 
     <div class="row">
-      <div class="d-flex justify-content-between align-items-center mt-5">
-        <div class="col-md-6">
+      <div class="d-flex justify-content-between align-items-center mt-5" id="back-btn-wrapper">
+        <div class="col-md-6 input-container">
           <input type="text" class="form-control" id="search" placeholder="Search for a country...">
+          <i class="fas fa-search"></i>
         </div>
         <div class="col-md-3">
-          <select class="form-select">
+          <select class="form-select" id="region">
             <option disabled selected>Filter by Region</option>
-            <option value="all">All</option>
-            <option value="africa">Africa</option>
-            <option value="americas">Americas</option>
-            <option value="asia">Asia</option>
-            <option value="europe">Europe</option>
-            <option value="oceanic">Oceania</option>
+            <option value="All">All</option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">Americas</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
           </select>
         </div>
       </div>
     </div>
 
-    <div class="mt-5 d-flex justify-content-between" id="countries-container">
+
+    <div class="mt-5 d-flex justify-content-center gap-5 flex-wrap" id="countries-container">
       <!-- Countries will be displayed here -->
     </div>
   </div>
