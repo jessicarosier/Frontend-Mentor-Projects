@@ -105,6 +105,7 @@ const createSingleJobListingHTML = (data, isNew, isFeatured) => {
 const filterByElement = async (language) => {
     language.addEventListener("click", async () => {
         const filterWrapper = document.getElementById("filter-wrapper");
+        //if 
         let filterEl = document.createElement("div");
         filterEl.classList.add("filter-element");
         filterEl.setAttribute("data-filter", language.innerText);
@@ -129,9 +130,9 @@ const listenForClearAll = () => {
     const filterWrapper = document.getElementById("filter-wrapper");
     const clearAll = document.getElementById("clear-btn");
     if (filterWrapper.children.length > 0) {
-    clearAll.classList.toggle("d-none", false)
+        clearAll.classList.toggle("d-none", false);
     }
-}
+};
 
 const clearAllFilters = async () => {
     const clearAll = document.getElementById("clear-btn");
@@ -142,7 +143,7 @@ const clearAllFilters = async () => {
         listenForClearAll();
         clearAll.classList.toggle("d-none", true);
     });
-}
+};
 
 const updateJobListings = async () => {
     let matchingJobs = [];
@@ -151,14 +152,14 @@ const updateJobListings = async () => {
     const filterElements = filterWrapper.querySelectorAll(".filter-element");
     let filters = [];
     filterElements.forEach((filter) => filters.push(filter.getAttribute("data-filter")));
-    for (let i = 0; i < jobListings.length; i++) {
-        for (let j = 0; j < filters.length; j++) {
-            if (jobListings[i].languages.includes(filters[j])) {
-                matchingJobs.push(jobListings[i]);
-            }
-        }
-        if (filters.includes(jobListings[i].role) || filters.includes(jobListings[i].level)) {
-            matchingJobs.push(jobListings[i]);
+
+    filters.forEach((filter) => {
+        console.log(filter);
+    });
+
+    for (const job of jobListings) {
+        if (filters.includes(job.role) || filters.includes(job.level) || filters.includes(job.languages)) {
+            matchingJobs.push(job);
         }
     }
 
@@ -167,6 +168,7 @@ const updateJobListings = async () => {
     }
     await populateJobListings(matchingJobs);
 };
+
 
 
 (async () => {
