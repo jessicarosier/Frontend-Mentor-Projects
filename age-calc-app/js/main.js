@@ -41,7 +41,7 @@ function calculateAge() {
 
 function generateErrorMessage(element, message) {
 
-    if ( element === day) {
+    if (element === day) {
         error = document.querySelector("#day-error");
     } else if (element === month) {
         error = document.querySelector("#month-error");
@@ -55,7 +55,7 @@ function generateErrorMessage(element, message) {
 }
 
 function removeErrorMessage(element) {
-    if ( element === day) {
+    if (element === day) {
         error = document.querySelector("#day-error");
     } else if (element === month) {
         error = document.querySelector("#month-error");
@@ -121,8 +121,6 @@ function validateYear() {
 
 circleArrow.addEventListener("click", function (e) {
     e.preventDefault();
-
-
     validateDay();
     validateMonth();
     validateYear();
@@ -132,7 +130,6 @@ circleArrow.addEventListener("click", function (e) {
     } else {
         allInputsValid = false;
     }
-
     if (allInputsValid) {
         calculateAge();
     }

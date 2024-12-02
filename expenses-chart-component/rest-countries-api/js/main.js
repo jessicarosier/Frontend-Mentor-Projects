@@ -28,6 +28,9 @@ const renderCountries = async () => {
     }
 };
 
+
+
+
 const renderSingleCountry = (country) => {
     const countryContainer = document.getElementById("countries-container");
     countryContainer.innerHTML = "";
