@@ -137,7 +137,7 @@ input:hover {
     }
 }
 
-.add-on {
+.add-on-card {
     border: solid 1px var(--purplish-blue);
     border-radius: 5px;
     padding: 15px;
@@ -230,5 +230,9 @@ input:hover {
     width: 100px;
 }
 
+.selected {
+    border: 1px solid var(--purplish-blue);
+    background-color: var(--light-gray);
+}
 
 

@@ -121,7 +121,7 @@
 
         <!--      Arcade - Advanced - Pro Boxes   -->
         <div class="d-flex flex-column flex-lg-row justify-content-center gap-3 mb-5">
-          <div class="card">
+          <div class="card plan-card" data-plan="Arcade">
             <img class="plan-icon" src="assets/images/icon-arcade.svg" alt="arcade-icon">
             <div class="card-body">
               <p class="card-title mb-0">Arcade</p>
@@ -129,7 +129,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card plan-card" data-plan="Advanced">
             <img class="plan-icon" src="assets/images/icon-advanced.svg" alt="advanced-icon">
             <div class="card-body">
               <p class="card-title mb-0">Advanced</p>
@@ -137,7 +137,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card plan-card" data-plan="Pro">
             <img class="plan-icon" src="assets/images/icon-pro.svg" alt="pro-icon">
             <div class="card-body">
               <p class="card-title mb-0">Pro</p>
@@ -146,12 +146,15 @@
           </div>
         </div>
 
+        <!--        Hidden input    -->
+        <input type="hidden" id="selected-plan" value="0">
+
 
         <!--      Monthly/yearly toggle switch    -->
         <div class="d-flex justify-content-center gap-3 mb-5">
           <p>Monthly</p>
           <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="montly-yearly-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="monthly-yearly-switch">
           </div>
           <p>Yearly</p>
         </div>
@@ -166,10 +169,10 @@
 
         <!--        Online Service  -->
         <div class="d-flex flex-column">
-          <div class="add-on d-flex justify-content-between align-items-center">
+          <div class="add-on-card d-flex justify-content-between align-items-center" data-add-on="online-service">
             <div class="d-flex justify-content-start">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="online-service" id="online-service-check">
+                <input class="form-check-input add-on" type="checkbox" value="online-service" id="online-service-check">
               </div>
               <div class="d-flex flex-column">
                 <p class="heading">Online service</p>
@@ -184,10 +187,10 @@
 
         <!--        Larger Storage  -->
         <div class="d-flex flex-column">
-          <div class="add-on d-flex justify-content-between align-items-center">
+          <div class="add-on-card d-flex justify-content-between align-items-center" data-add-on="larger-storage">
             <div class="d-flex justify-content-start">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="larger-storage" id="larger-storage-check">
+                <input class="form-check-input add-on" type="checkbox" value="larger-storage" id="larger-storage-check">
               </div>
               <div class="d-flex flex-column">
                 <p class="heading">Larger storage</p>
@@ -202,10 +205,10 @@
 
         <!--        Customizable Profile  -->
         <div class="d-flex flex-column">
-          <div class="add-on d-flex justify-content-between align-items-center">
+          <div class="add-on-card d-flex justify-content-between align-items-center" data-add-on="customizable-profile">
             <div class="d-flex justify-content-start">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="customizable-profile" id="customizable-profile-check">
+                <input class="form-check-input add-on" type="checkbox" value="customizable-profile" id="customizable-profile-check">
               </div>
               <div class="d-flex flex-column">
                 <p class="heading">Customizable Profile</p>
@@ -218,10 +221,13 @@
           </div>
         </div>
 
+        <!--        Hidden input    -->
+        <input type="hidden" id="selected-add-on" value="0">
+
       </div>
 
       <!--  STEP 4-->
-      <div class="step d-flex flex-column p-5 form-fields d-none">
+      <div class="step d-flex flex-column p-5 form-fields d-none step-4">
         <h2>Finishing up</h2>
         <p class="mb-5">Double-check everything looks OK before confirming.</p>
 
@@ -235,7 +241,7 @@
               <div class="plan-type-text">Arcade (Monthly)</div>
               <a class="change-btn" href="#">Change</a>
             </div>
-            <div class="plan-type-text">$9/mo</div>
+            <div class="plan-type-cost">$9/mo</div>
           </div>
 
           <hr>
@@ -294,6 +300,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-<script src="js/main.js"></script>
+<script type="module" src="js/code-runner.js"></script>
 </body>
 </html>
