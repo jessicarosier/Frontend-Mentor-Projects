@@ -84,7 +84,7 @@ function updateStep5Html(totalCost) {
         <div class="total-cost">Total${totalCost.switch === "Yearly" ? "(per year)" : "(per month)"}</div>
         <div class="total-cost">+$${totalCost.planCost + (totalCost.addOns.onlineService || 0) + (totalCost.addOns.largerStorage || 0) + (totalCost.addOns.customizableProfile || 0)}/${totalCost.switch === "Yearly" ? "yr" : "mo"}</div>
     </
-    }div>
+   
     `;
 
 
@@ -114,7 +114,7 @@ function setNumberCircleActiveState(currentStep) {
             circle.classList.remove("active");
         }
         if (currentStep === 4) {
-            circle.classList.add("active")
+            circle.classList.add("active");
         }
     });
 
