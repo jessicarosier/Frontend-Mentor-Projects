@@ -14,7 +14,7 @@ const addOnCosts = {
     onlineService: 1,
     largerStorage: 2,
     customizableProfile: 2
-}
+};
 
 
 class MultiStepForm {
@@ -53,11 +53,40 @@ function collectFormData() {
 }
 
 function updateStep5Html(totalCost) {
-    const planType = document.querySelector("plan-type-text");
-    planType.innerText = `${totalCost.plan} (${totalCost.switch})`;
+    const planTypeDiv = document.querySelector(".plan-type-div");
+    planTypeDiv.innerHTML = `
+    <div>${totalCost.plan} (${totalCost.switch})</div>
+    <a class="change-btn" href="#">Change</a>
+`;
 
-    const planTypeCost = document.querySelector("plan-type-cost");
-    planTypeCost.innerText = `$${totalCost.planCost}/${totalCost.switch} === "yr" ? "year" : "mo"`;
+    const planTypeCost = document.querySelector(".plan-type-cost");
+    planTypeCost.innerText = `$${totalCost.planCost}/${totalCost.switch === "yr" ? "year" : "mo"}`;
+
+    const addOnsDiv = document.querySelector(".add-ons-div");
+    addOnsDiv.innerHTML = "";
+    totalCost.addOns.onlineService ? addOnsDiv.innerHTML += `
+      <div class="d-flex justify-content-between mb-5">
+        <p>Online service</p>
+        <p>+$1/mo</p>
+        </div>` : null;
+    totalCost.addOns.largerStorage ? addOnsDiv.innerHTML += `
+      <div class="d-flex justify-content-between mb-5">
+        <p>Larger storage</p>
+        <p>+$2/mo</p>
+      </div>` : null;
+    totalCost.addOns.customizableProfile ? addOnsDiv.innerHTML += `<div class="d-flex justify-content-between mb-5">
+        <p>Customizable Profile</p>
+        <p>+$2/mo</p>
+      </div>` : null;
+
+    const totalCostDiv = document.querySelector(".total-cost-div");
+    totalCostDiv.innerHTML = `
+        <div class="total-cost">Total${totalCost.switch === "Yearly" ? "(per year)" : "(per month)"}</div>
+        <div class="total-cost">+$${totalCost.planCost + (totalCost.addOns.onlineService || 0) + (totalCost.addOns.largerStorage || 0) + (totalCost.addOns.customizableProfile || 0)}/${totalCost.switch === "Yearly" ? "yr" : "mo"}</div>
+    </
+    }div>
+    `;
+
 
 }
 
@@ -65,7 +94,7 @@ function getTotalCost(formData) {
 
     let costObj = {
         plan: formData.plan,
-        planCost: formData.plan === "Arcade" ? planCosts.arcade : formData.plan === planCosts.advanced ? 12 : planCosts.pro,
+        planCost: formData.plan === "Arcade" ? planCosts.arcade : formData.plan === "Advanced" ? planCosts.advanced : planCosts.pro,
         switch: formData.switch,
         addOns: {
             onlineService: formData.addOns.includes("online-service") ? addOnCosts.onlineService : null,
@@ -84,6 +113,9 @@ function setNumberCircleActiveState(currentStep) {
         } else {
             circle.classList.remove("active");
         }
+        if (currentStep === 4) {
+            circle.classList.add("active")
+        }
     });
 
 }
@@ -97,7 +129,6 @@ function listenForNextBtn() {
         steps[currentStep].classList.add("d-none");
         steps[currentStep + 1].classList.remove("d-none");
         currentStep++;
-        console.log(currentStep);
         setNumberCircleActiveState(currentStep);
         toggleBtnVisibility(currentStep);
     });
@@ -125,6 +156,11 @@ function toggleBtnVisibility(currentStep) {
             confirmBtn.classList.remove("d-none");
             collectFormData();
             break;
+        case 4:
+            nextBtn.classList.add("d-none");
+            prevBtn.classList.add("d-none");
+            confirmBtn.classList.add("d-none");
+            break;
         default:
             break;
     }
@@ -144,7 +180,11 @@ function listenForPrevBtn() {
 function listenForConfirmBtn() {
     confirmBtn.addEventListener("click", e => {
         e.preventDefault();
-        collectFormData();
+        steps[currentStep].classList.add("d-none");
+        steps[currentStep + 1].classList.remove("d-none");
+        currentStep++;
+        setNumberCircleActiveState(currentStep);
+        toggleBtnVisibility(currentStep);
     });
 }
 
@@ -219,4 +259,17 @@ function validateSteps(currentStep) {
 }
 
 
-export { MultiStepForm, getSwitchValue, collectFormData, setNumberCircleActiveState, listenForNextBtn, toggleBtnVisibility, listenForPrevBtn, listenForConfirmBtn, listenForPlanSelection, listenForAddOnSelection, getAddOns, validateSteps };
+export {
+    MultiStepForm,
+    getSwitchValue,
+    collectFormData,
+    setNumberCircleActiveState,
+    listenForNextBtn,
+    toggleBtnVisibility,
+    listenForPrevBtn,
+    listenForConfirmBtn,
+    listenForPlanSelection,
+    listenForAddOnSelection,
+    getAddOns,
+    validateSteps
+};
