@@ -1,4 +1,4 @@
-import { listenForNextBtn, listenForPrevBtn, listenForConfirmBtn, listenForPlanSelection, listenForAddOnSelection } from './main.js';
+import { listenForNextBtn, listenForPrevBtn, listenForConfirmBtn, listenForPlanSelection, listenForAddOnSelection, listenForSwitchChange } from './main.js';
 
 (async () => {
 
@@ -7,5 +7,6 @@ import { listenForNextBtn, listenForPrevBtn, listenForConfirmBtn, listenForPlanS
     listenForConfirmBtn();
     listenForPlanSelection();
     listenForAddOnSelection();
+    listenForSwitchChange();
 
 })();

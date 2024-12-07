@@ -6,14 +6,29 @@ const steps = form.querySelectorAll(".step");
 const numberCircles = document.querySelectorAll(".number-circle");
 let currentStep = 0;
 const planCosts = {
-    arcade: 9,
-    advanced: 12,
-    pro: 15
+    monthly: {
+        arcade: 9,
+        advanced: 12,
+        pro: 15
+    },
+    yearly: {
+        arcade: 50,
+        advanced: 120,
+        pro: 150
+    }
 };
+
 const addOnCosts = {
-    onlineService: 1,
-    largerStorage: 2,
-    customizableProfile: 2
+    monthly: {
+        onlineService: 1,
+        largerStorage: 2,
+        customizableProfile: 2
+    },
+    yearly: {
+        onlineService: 10,
+        largerStorage: 20,
+        customizableProfile: 20
+    }
 };
 
 
@@ -40,12 +55,43 @@ function getSwitchValue() {
     }
 }
 
+function listenForSwitchChange() {
+    const switchInput = document.getElementById("monthly-yearly-switch");
+
+    switchInput.addEventListener("change", (e) => {
+        e.preventDefault();
+        updatePlanSelectionUI(e)
+        updateAddOnSelectionUI(e);
+    })
+}
+
+function updatePlanSelectionUI(event) {
+    let planArray = ["arcade", "advanced", "pro"];
+    planArray.forEach(plan => {
+        if (event.target.checked) {
+            document.getElementById(`${plan}-cost`).innerText = `$${planCosts.yearly[plan]}/yr`;
+        } else {
+            document.getElementById(`${plan}-cost`).innerText = `$${planCosts.monthly[plan]}/mo`;
+        }
+    });
+}
+
+function updateAddOnSelectionUI(event) {
+    let addOnArr = ["onlineService", "largerStorage", "customizableProfile"];
+    addOnArr.forEach(addOn => {
+        if (event.target.checked) {
+            document.getElementById(`${addOn}-cost`).innerText = `+$${addOnCosts.yearly[addOn]}/yr`;
+        } else {
+            document.getElementById(`${addOn}-cost`).innerText = `+$${addOnCosts.monthly[addOn]}/mo`;
+        }
+    });
+}
+
 function collectFormData() {
     /***
      @description This function collects the form data and returns an object containing the form data.
      ***/
     let formData = new MultiStepForm();
-    console.log(formData);
     let totalCostObj = getTotalCost(formData);
     console.log(totalCostObj);
     updateStep5Html(totalCostObj);
@@ -59,8 +105,9 @@ function updateStep5Html(totalCost) {
     <a class="change-btn" href="#">Change</a>
 `;
 
+
     const planTypeCost = document.querySelector(".plan-type-cost");
-    planTypeCost.innerText = `$${totalCost.planCost}/${totalCost.switch === "yr" ? "year" : "mo"}`;
+    planTypeCost.innerText = `$${totalCost.planCost}/${totalCost.switch === "Yearly" ? "year" : "mo"}`;
 
     const addOnsDiv = document.querySelector(".add-ons-div");
     addOnsDiv.innerHTML = "";
@@ -94,12 +141,12 @@ function getTotalCost(formData) {
 
     let costObj = {
         plan: formData.plan,
-        planCost: formData.plan === "Arcade" ? planCosts.arcade : formData.plan === "Advanced" ? planCosts.advanced : planCosts.pro,
+        planCost: formData.switch === "Yearly" ? planCosts.yearly[formData.plan.toLowerCase()] : planCosts.monthly[formData.plan.toLowerCase()],
         switch: formData.switch,
         addOns: {
-            onlineService: formData.addOns.includes("online-service") ? addOnCosts.onlineService : null,
-            largerStorage: formData.addOns.includes("larger-storage") ? addOnCosts.largerStorage : null,
-            customizableProfile: formData.addOns.includes("customizable-profile") ? addOnCosts.customizableProfile : null,
+            onlineService: formData.addOns.includes("online-service"),
+            largerStorage: formData.addOns.includes("larger-storage"),
+            customizableProfile: formData.addOns.includes("customizable-profile"),
         }
     };
     return costObj;
@@ -271,5 +318,6 @@ export {
     listenForPlanSelection,
     listenForAddOnSelection,
     getAddOns,
-    validateSteps
+    validateSteps,
+    listenForSwitchChange
 };
