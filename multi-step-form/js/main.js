@@ -31,6 +31,12 @@ const addOnCosts = {
     }
 };
 
+const nameRegex = /^[a-zA-Z]+$/;
+const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z]+\.[a-zA-Z]+$/;
+const phoneRegex = /^[0-9]{10}$/;
+
+
+
 
 class MultiStepForm {
     constructor() {
@@ -60,9 +66,9 @@ function listenForSwitchChange() {
 
     switchInput.addEventListener("change", (e) => {
         e.preventDefault();
-        updatePlanSelectionUI(e)
+        updatePlanSelectionUI(e);
         updateAddOnSelectionUI(e);
-    })
+    });
 }
 
 function updatePlanSelectionUI(event) {
@@ -319,5 +325,5 @@ export {
     listenForAddOnSelection,
     getAddOns,
     validateSteps,
-    listenForSwitchChange
+    listenForSwitchChange,
 };
