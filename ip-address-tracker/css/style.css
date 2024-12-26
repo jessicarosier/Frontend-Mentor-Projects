@@ -1,0 +1,53 @@
+
+:root {
+    /*Layout*/
+    /*The designs were created to the following widths: */
+    /*-Mobile: 375px*/
+    /*-Desktop: 1440px*/
+
+    /*Colors*/
+    --Very-Dark-Gray: hsl(0, 0%, 17%);
+    --Dark-Gray: hsl(0, 0%, 59%);
+
+    /*Typography*/
+
+--Font-size(text input): 18 px;
+
+    /*Font*/
+    --font-fam: Rubik;
+    --font-boldest: 700;
+    --font-bolder: 500;
+    --font-bold: 400;
+}
+
+#header-background {
+    background-image: url('../images/pattern-bg-desktop.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+}
+
+form input {
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#map {
+    height: 500px;
+}
+
+#ip {
+    width: 500px;
+}
+
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a {
+    color: hsl(228, 45%, 44%);
+}
